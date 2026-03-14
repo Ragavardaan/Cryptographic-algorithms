@@ -1,0 +1,5 @@
+move to crypto directory
+PS D:\crypto_lab> python -m venv venv
+PS D:\crypto_lab> venv\Scripts\activate
+(venv) PS D:\crypto_lab> pip install flask
+(venv) PS D:\crypto_lab> python app.py

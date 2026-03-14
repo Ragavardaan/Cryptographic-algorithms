@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Primitive Roots - Crypto Lab</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="logo">Crypto Lab</div>
+    <nav><ul><li><a href="{{ url_for('exercise', ex_id='ex1') }}">Home</a></li></ul></nav>
+  </aside>
+
+  <main class="content">
+    <header>
+      <h1>Primitive Roots</h1>
+      <nav>
+        <a href="{{ url_for('exercise', ex_id='ex1') }}" class="home-btn">Dashboard</a>
+      </nav>
+    </header>
+
+    <form method="post">
+      <label>Modulus (n)</label>
+      <input name="modulus" type="number" min="2" required placeholder="e.g. 17">
+
+      <button type="submit">Compute</button>
+
+      {% if error %}
+        <div class="error-message">{{ error }}</div>
+      {% endif %}
+
+      {% if result %}
+        <h3>Result</h3>
+        <div class="output-box">
+          <strong>Primitive Roots Exist:</strong> {{ result.exists }}
+          {% if result.phi is not none %}
+            <br><strong>Phi(n):</strong> {{ result.phi }}
+            <br><strong>Expected Count:</strong> {{ result.count }}
+            <br><strong>Returned Roots ({{ result.roots|length }}):</strong>
+            <br>{{ result.roots|join(', ') }}
+          {% endif %}
+        </div>
+
+        {% if result.steps %}
+          <h3>Explanation</h3>
+          <div class="output-box">{{ result.steps|join('\n') }}</div>
+        {% endif %}
+
+      {% endif %}
+
+    </form>
+  </main>
+</body>
+</html>

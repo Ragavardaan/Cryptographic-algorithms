@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>GCD (Euclidean Algorithm) - Crypto Lab</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="logo">Crypto Lab</div>
+    <nav><ul><li><a href="{{ url_for('exercise', ex_id='ex1') }}">Home</a></li></ul></nav>
+  </aside>
+
+  <main class="content">
+    <header>
+      <h1>GCD (Euclidean Algorithm)</h1>
+      <nav>
+        <a href="extended_gcd.html" class="mode-switch">Switch to Extended GCD</a>
+        <a href="{{ url_for('exercise', ex_id='ex1') }}" class="home-btn">Dashboard</a>
+      </nav>
+    </header>
+
+    <form method="post">
+      <label>First Number (a):</label>
+      <input name="a" type="number" required placeholder="e.g. 48" value="{{ request.form.get('a', '') }}">
+
+      <label>Second Number (b):</label>
+      <input name="b" type="number" required placeholder="e.g. 18" value="{{ request.form.get('b', '') }}">
+
+      <button type="submit">Compute GCD</button>
+
+      {% if error %}
+        <div class="error-message">{{ error }}</div>
+      {% endif %}
+
+      {% if result %}
+        <h3>Result</h3>
+        <div class="output-box">
+          <strong>GCD({{ request.form.get('a', '') }}, {{ request.form.get('b', '') }}) = {{ result.gcd }}</strong>
+        </div>
+
+        {% if result.steps %}
+          <h3>Steps (Euclidean Algorithm)</h3>
+          <div class="output-box">
+            {% for step in result.steps %}
+              {{ step }}<br>
+            {% endfor %}
+          </div>
+        {% endif %}
+
+      {% endif %}
+    </form>
+
+  </main>
+
+</body>
+</html>

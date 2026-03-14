@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Diffie Hellman</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<aside class="sidebar">
+<div class="logo">Crypto Lab</div>
+<nav>
+<ul>
+<li><a href="{{ url_for('exercise', ex_id='ex3') }}">Dashboard</a></li>
+</ul>
+</nav>
+</aside>
+
+<main class="content">
+
+<header>
+<h1>Diffie Hellman Key Exchange</h1>
+</header>
+
+<form method="post">
+
+<label>q (Large Prime)</label>
+<input name="q">
+
+<label>α (Primitive Root of q)</label>
+<input name="alpha">
+
+<label>Private Key A (optional)</label>
+<input name="a">
+
+<label>Private Key B (optional)</label>
+<input name="b">
+
+<button type="submit">Generate Key</button>
+
+{% if error %}
+<div class="error-message">{{ error }}</div>
+{% endif %}
+
+</form>
+
+
+{% if result %}
+
+<div style="display:flex; gap:30px; margin-top:30px;">
+
+<div style="width:50%">
+<h3>User A (Sender)</h3>
+<div class="output-box">
+{% for step in result.A_steps %}
+{{step}}<br>
+{% endfor %}
+</div>
+</div>
+
+<div style="width:50%">
+<h3>User B (Receiver)</h3>
+<div class="output-box">
+{% for step in result.B_steps %}
+{{step}}<br>
+{% endfor %}
+</div>
+</div>
+
+</div>
+
+{% endif %}
+
+</main>
+</body>
+</html>

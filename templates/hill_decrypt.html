@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hill Decryption</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="logo">Crypto Lab</div>
+    <nav>
+      <ul>
+        <li><a href="{{ url_for('exercise', ex_id='ex1') }}">Home</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <main class="content">
+    <header>
+      <h1>Hill Decryption</h1>
+      <nav>
+        <a href="hill_encrypt.html" class="mode-switch">Switch to Encrypt</a>
+        <a href="{{ url_for('exercise', ex_id='ex1') }}" class="home-btn">Dashboard</a>
+      </nav>
+    </header>
+
+    <section>
+      <form method="POST">
+        <label>Matrix Dimension (n):</label>
+        <input type="number" name="size" value="{{ request.form.get('size', '') }}" required>
+        
+        <label>Key / Matrix (letters or space-separated numbers)</label>
+        <textarea name="key" placeholder="e.g. HILLTMATRIX or '3 3 2 2'" required>{{ request.form.get('key', '') }}</textarea>
+        <small>Enter either a sequence of letters (will be converted to a key matrix) or space-separated integers (a numeric matrix). Size can be left empty to infer from input when appropriate.</small>
+
+        <label>Ciphertext:</label>
+        <textarea name="ciphertext" required>{{ request.form.get('ciphertext', '') }}</textarea> 
+        
+        <button type="submit">Decrypt</button>
+      </form>
+
+      <div class="error-message">{{ error if error }}</div>
+
+      <h3>Plaintext:</h3>
+      <pre class="output-box">{{ data.text if data }}</pre>
+
+      {% if data %}
+        <h3>Key Matrix ({{ data.matrix|length }} x {{ data.matrix|length }}):</h3>
+        <pre class="output-box">
+{% for row in data.matrix %}{{ row }}
+{% endfor %}
+        </pre>
+
+        <h3>Determinant:</h3>
+        <pre class="output-box">{{ data.det }} (mod 26 = {{ data.det_mod }})
+Determinant Inverse (mod 26): {{ data.det_inv if data.det_inv is not none else 'None / Not invertible' }}</pre>
+
+        <h3>Cofactor Matrix:</h3>
+        <pre class="output-box">
+{% for row in data.cofactor %}{{ row }}
+{% endfor %}
+        </pre>
+
+        <h3>Adjugate (Transpose of Cofactor):</h3>
+        <pre class="output-box">
+{% for row in data.adjugate %}{{ row }}
+{% endfor %}
+        </pre>
+
+        <h3>Inverse Key Matrix (mod 26):</h3>
+        <pre class="output-box">
+{% for row in data.inv_matrix %}{{ row }}
+{% endfor %}
+        </pre>
+
+        <h3>Block-by-block Multiplication with Inverse Matrix:</h3>
+        {% for b in data.blocks %}
+          <pre class="output-box">
+Vector: {{ b.vec }}
+{% for j in range(b.products|length) %}
+Products for output {{ j }}: {{ b.products[j] }}
+Sum: {{ b.sums[j] }} => mod 26 = {{ b.sums_mod[j] }} => Letter = {{ b.letters[j] }}
+{% endfor %}
+          </pre>
+        {% endfor %}
+      {% endif %}
+    </section>
+  </main>
+</body>
+</html>

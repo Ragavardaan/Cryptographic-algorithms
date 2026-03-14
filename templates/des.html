@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>DES Trace - Crypto Lab</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="logo">Crypto Lab</div>
+    <nav><ul><li><a href="{{ url_for('exercise', ex_id='ex1') }}">Home</a></li></ul></nav>
+  </aside>
+
+  <main class="content">
+    <header>
+      <h1>Single DES Trace</h1>
+      <nav>
+        <a href="{{ url_for('exercise', ex_id='ex2') }}" class="home-btn">Dashboard</a>
+      </nav>
+    </header>
+
+    <form method="post">
+      <label>Plaintext (text / ASCII sentence):</label>
+      <input name="plaintext_text" type="text" value="{{ request.form.get('plaintext_text','') }}">
+
+      <label>Key (64-bit hex or 64-bit binary):</label>
+      <input name="key" type="text" value="{{ request.form.get('key','') }}" required>
+
+      <label>Mode:</label>
+      <label><input type="radio" name="mode" value="ECB" {% if request.form.get('mode','ECB')=='ECB' %}checked{% endif %}> ECB</label>
+      <label><input type="radio" name="mode" value="CBC" {% if request.form.get('mode','ECB')=='CBC' %}checked{% endif %}> CBC</label>
+
+      <label>Operation:</label>
+      <label><input type="radio" name="operation" value="ENCRYPT" {% if request.form.get('operation','ENCRYPT')=='ENCRYPT' %}checked{% endif %}> Encrypt</label>
+      <label><input type="radio" name="operation" value="DECRYPT" {% if request.form.get('operation','ENCRYPT')=='DECRYPT' %}checked{% endif %}> Decrypt</label>
+
+      <button type="submit">Encrypt (trace)</button>
+
+      {% if error %}
+        <div class="error-message">{{ error }}</div>
+      {% endif %}
+
+      {% if result %}
+        <h3>Result (hex)</h3>
+        <div class="output-box">{{ result.ciphertext }}</div>
+
+        <h3>Trace</h3>
+        <div class="output-box">
+          {% for step in result.steps %}
+            {% if step.startswith('---') %}
+              <strong>{{ step }}</strong><br>
+            {% else %}
+              {{ step }}<br>
+            {% endif %}
+          {% endfor %}
+        </div>
+      {% endif %}
+    </form>
+
+  </main>
+</body>
+</html>

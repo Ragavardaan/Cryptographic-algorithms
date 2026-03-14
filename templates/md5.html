@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>MD5 Hash - Crypto Lab</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<aside class="sidebar">
+<div class="logo">Crypto Lab</div>
+<nav>
+<ul>
+<li><a href="{{ url_for('exercise', ex_id='ex4') }}">Dashboard</a></li>
+</ul>
+</nav>
+</aside>
+
+<main class="content">
+
+<header>
+<h1>MD5 Hash Algorithm</h1>
+</header>
+
+<form method="post">
+
+<label>Enter Message:</label>
+<input name="message" type="text"
+value="{{ request.form.get('message','') }}" required>
+
+<button type="submit">Generate MD5 Hash</button>
+
+{% if error %}
+<div class="error-message">{{ error }}</div>
+{% endif %}
+
+{% if result %}
+<h3>MD5 Hash</h3>
+<div class="output-box">
+{{ result.hash }}
+</div>
+
+<h3>Trace</h3>
+<div class="output-box">
+
+{% for step in result.steps %}
+{{ step }}<br>
+{% endfor %}
+
+</div>
+{% endif %}
+
+</form>
+
+</main>
+
+</body>
+</html>

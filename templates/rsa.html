@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>RSA - Crypto Lab</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="logo">Crypto Lab</div>
+  <nav><ul><li><a href="{{ url_for('exercise', ex_id='ex3') }}">Dashboard</a></li></ul></nav>
+</aside>
+
+<main class="content">
+<header>
+  <h1>RSA Algorithm</h1>
+</header>
+
+<form method="post">
+
+<label>Prime p:</label>
+<input name="p" value="{{ request.form.get('p','') }}">
+
+<label>Prime q:</label>
+<input name="q" value="{{ request.form.get('q','') }}">
+
+<label>Public exponent e:</label>
+<input name="e" value="{{ request.form.get('e','') }}">
+
+<label>Message (text):</label>
+<input name="message" value="{{ request.form.get('message','') }}">
+
+<label>Ciphertext (space separated numbers):</label>
+<input name="ciphertext" value="{{ request.form.get('ciphertext','') }}">
+
+<button type="submit" name="action" value="generate">Generate Keys</button>
+<button type="submit" name="action" value="encrypt">Encrypt</button>
+<button type="submit" name="action" value="decrypt">Decrypt</button>
+
+{% if error %}
+<div class="error-message">{{ error }}</div>
+{% endif %}
+
+{% if result %}
+<h3>Result</h3>
+<div class="output-box">{{ result }}</div>
+{% endif %}
+
+{% if key_steps %}
+<h3>Key Generation Steps</h3>
+<div class="output-box">
+{% for step in key_steps %}
+{{ step }}<br>
+{% endfor %}
+</div>
+{% endif %}
+
+{% if enc_steps %}
+<h3>Encryption Steps</h3>
+<div class="output-box">
+{% for step in enc_steps %}
+{{ step }}<br>
+{% endfor %}
+</div>
+{% endif %}
+
+{% if dec_steps %}
+<h3>Decryption Steps</h3>
+<div class="output-box">
+{% for step in dec_steps %}
+{{ step }}<br>
+{% endfor %}
+</div>
+{% endif %}
+
+</form>
+</main>
+</body>
+</html>

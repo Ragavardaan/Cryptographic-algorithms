@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Shift Decryption</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="logo">Crypto Lab</div>
+    <nav>
+      <ul>
+        <li><a href="{{ url_for('exercise', ex_id='ex1') }}">Home</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <main class="content">
+    <header>
+      <h1>Shift Decryption</h1>
+      <nav>
+        <a href="shift_encrypt.html" class="mode-switch">Switch to Encrypt</a>
+        <a href="{{ url_for('exercise', ex_id='ex1') }}" class="home-btn">Dashboard</a>
+      </nav>
+    </header>
+
+    <section>
+      <form method="POST">
+        <label>Ciphertext:</label>
+        <textarea name="ciphertext" required>{{ request.form.get('ciphertext', '') }}</textarea>
+        
+        <label>Key (integer):</label>
+        <input type="number" name="key" value="{{ request.form.get('key', '') }}" required>
+        
+        <button type="submit">Decrypt</button>
+      </form>
+
+      <div class="error-message">{{ error if error }}</div>
+
+      <h3>Plaintext:</h3>
+      <pre class="output-box">{{ result if result }}</pre>
+    </section>
+  </main>
+</body>
+</html>

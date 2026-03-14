@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Playfair Encryption</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="logo">Crypto Lab</div>
+    <nav>
+      <ul>
+        <li><a href="{{ url_for('exercise', ex_id='ex1') }}">Home</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <main class="content">
+    <header>
+      <h1>Playfair Encryption</h1>
+      <nav>
+        <a href="playfair_decrypt.html" class="mode-switch">Switch to Decrypt</a>
+        <a href="{{ url_for('exercise', ex_id='ex1') }}" class="home-btn">Dashboard</a>
+      </nav>
+    </header>
+
+    <section>
+      <form method="POST">
+        <label>Key:</label>
+        <input type="text" name="key" value="{{ request.form.get('key', '') }}" required>
+        
+        <label>Plaintext:</label>
+        <textarea name="plaintext" required>{{ request.form.get('plaintext', '') }}</textarea>
+        
+        <button type="submit">Encrypt</button>
+      </form>
+
+      <div class="error-message">{{ error if error }}</div>
+
+      {% if data %}
+      
+        <h3>1. Generated Key Matrix (5x5):</h3>
+        <pre class="output-box" style="text-align: center; letter-spacing: 5px;">
+{% for row in data.matrix %}{{ row }}
+{% endfor %}
+        </pre>
+
+        <h3>2. Plaintext Pairs (Digraphs):</h3>
+        <pre class="output-box">{{ data.orig_pairs }}</pre>
+
+        <h3>3. Converted Pairs:</h3>
+        <pre class="output-box">{{ data.trans_pairs }}</pre>
+
+        <h3>4. Final Ciphertext:</h3>
+        <pre class="output-box">{{ data.text }}</pre>
+      
+      {% endif %}
+    </section>
+  </main>
+</body>
+</html>

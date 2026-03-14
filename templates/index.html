@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cryptography Lab</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+  <aside class="sidebar">
+    <div class="logo">Crypto Lab</div>
+    <nav>
+      <ul>
+        {% for i in range(1, 8) %}
+          {% set ex = 'ex' ~ i %}
+          <li>
+            <a href="/{{ ex }}" class="{{ 'active' if active_ex == ex else '' }}">
+              Ex{{ i }}
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    </nav>
+  </aside>
+
+  <main class="content">
+    
+    {% if active_ex == 'ex1' %}
+      <header>
+        <h1>Ex1: Classical Cryptography</h1>
+      </header>
+      
+      <div class="cipher-container">
+        
+        <section class="cipher-card">
+          <h2>Shift Cipher</h2>
+          <ul class="link-list">
+            <li><a href="shift_encrypt.html">Encrypt</a></li>
+            <li><a href="shift_decrypt.html">Decrypt</a></li>
+          </ul>
+        </section>
+
+        <section class="cipher-card">
+          <h2>Hill Cipher</h2>
+          <ul class="link-list">
+            <li><a href="hill_matrix_inverse.html">Matrix Properties</a></li>
+            <li><a href="hill_determinant.html">Determinant</a></li>
+            <li><a href="hill_multiplicative_inverse.html">Multiplicative Inverse</a></li>
+            <li><a href="hill_encrypt.html">Encrypt</a></li>
+            <li><a href="hill_decrypt.html">Decrypt</a></li>
+            <li><a href="hill_cofactor.html">Cofactor Matrix</a></li>
+            <li><a href="hill_transpose.html">Transpose Matrix</a></li>
+          </ul>
+        </section>
+
+        <section class="cipher-card">
+          <h2>Playfair Cipher</h2>
+          <ul class="link-list">
+            <li><a href="playfair_encrypt.html">Encrypt</a></li>
+            <li><a href="playfair_decrypt.html">Decrypt</a></li>
+          </ul>
+        </section>
+
+        <section class="cipher-card">
+          <h2>Number Theory</h2>
+          <ul class="link-list">
+            <li><a href="primitive_root.html">Primitive Roots</a></li>
+            <li><a href="gcd.html">GCD (Euclidean Algorithm)</a></li>
+            <li><a href="extended_gcd.html">Extended Euclidean Algorithm</a></li>
+          </ul>
+        </section>
+      </div>
+
+    {% elif active_ex == 'ex2' %}
+      <header>
+        <h1>Ex2: Modern Ciphers</h1>
+      </header>
+      <div class="cipher-container">
+        <section class="cipher-card">
+          <h2>AES (Single Block)</h2>
+          <ul class="link-list">
+            <li><a href="aes.html">AES Encrypt (trace)</a></li>
+          </ul>
+        </section>
+
+        <section class="cipher-card">
+          <h2>Single DES</h2>
+          <ul class="link-list">
+            <li><a href="des.html">DES Encrypt (trace)</a></li>
+          </ul>
+        </section>
+      </div>
+    {% elif active_ex == 'ex3' %}
+      <header>
+        <h1>Ex3: Public Key Cryptography</h1>
+      </header>
+
+      <div class="cipher-container">
+        <section class="cipher-card">
+          <h2>RSA Algorithm</h2>
+          <ul class="link-list">
+            <li><a href="rsa.html">RSA (KeyGen + Encrypt + Decrypt)</a></li>
+          </ul>
+       </section>
+
+       <section class="cipher-card">
+          <h2>Diffie Hellman</h2>
+          <ul class="link-list">
+            <li><a href="diffie.html">Key Exchange</a></li>
+          </ul>
+        </section>
+      </div>
+    {% elif active_ex == 'ex4' %}
+      <header>
+          <h1>Ex4: Cryptographic Hash Functions</h1>
+      </header>
+
+      <div class="cipher-container">
+
+        <section class="cipher-card">
+          <h2>MD5 Hash Algorithm</h2>
+          <ul class="link-list">
+            <li><a href="md5.html">Generate MD5 Hash</a></li>
+          </ul>
+        </section>
+
+      </div>
+    {% else %}
+      <header>
+        <h1>{{ active_ex|upper }}</h1>
+      </header>
+      <div class="placeholder-content">
+        <p>This exercise will be implemented soon.</p>
+      </div>
+    {% endif %}
+
+  </main>
+
+</body>
+</html>

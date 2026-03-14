@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hill Determinant</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="logo">Crypto Lab</div>
+    <nav><ul><li><a href="{{ url_for('exercise', ex_id='ex1') }}">Home</a></li></ul></nav>
+  </aside>
+
+  <main class="content">
+    <header>
+      <h1>Hill Determinant</h1>
+      <nav>
+        <a href="{{ url_for('exercise', ex_id='ex1') }}" class="home-btn">Dashboard</a>
+      </nav>
+    </header>
+
+    <section>
+      <form method="POST">
+        <label>Matrix Dimension (n):</label>
+        <input type="number" name="size" value="{{ request.form.get('size', '') }}" required>
+        
+        <label>Matrix:</label>
+        <textarea name="matrix" required>{{ request.form.get('matrix', '') }}</textarea>
+        
+        <button type="submit">Compute</button>
+      </form>
+
+      <div class="error-message">{{ error if error }}</div>
+
+      <h3>Determinant:</h3>
+      <pre class="output-box">{{ det if det is not none }}</pre>
+      
+      <h3>Determinant Mod 26:</h3>
+      <pre class="output-box">{{ det_mod if det_mod is not none }}</pre>
+    </section>
+  </main>
+</body>
+</html>

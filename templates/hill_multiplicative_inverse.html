@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Multiplicative Inverse</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="logo">Crypto Lab</div>
+    <nav><ul><li><a href="{{ url_for('exercise', ex_id='ex1') }}">Home</a></li></ul></nav>
+  </aside>
+
+  <main class="content">
+    <header>
+      <h1>Multiplicative Inverse (Mod 26)</h1>
+      <nav>
+        <a href="{{ url_for('exercise', ex_id='ex1') }}" class="home-btn">Dashboard</a>
+      </nav>
+    </header>
+
+    <section>
+      <form method="POST">
+        <label>Integer a:</label>
+        <input type="number" name="a" value="{{ request.form.get('a', '') }}" required>
+        
+        <button type="submit">Compute</button>
+      </form>
+
+      <div class="error-message">{{ error if error }}</div>
+
+      <h3>GCD(a, 26):</h3>
+      <pre class="output-box">{{ gcd if gcd is not none }}</pre>
+
+      <h3>Inverse:</h3>
+      <pre class="output-box">{{ inverse if inverse }}</pre>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hill Encryption</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="logo">Crypto Lab</div>
+    <nav>
+      <ul>
+        <li><a href="{{ url_for('exercise', ex_id='ex1') }}">Home</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <main class="content">
+    <header>
+      <h1>Hill Encryption</h1>
+      <nav>
+        <a href="hill_decrypt.html" class="mode-switch">Switch to Decrypt</a>
+        <a href="{{ url_for('exercise', ex_id='ex1') }}" class="home-btn">Dashboard</a>
+      </nav>
+    </header>
+
+    <section>
+      <form method="POST">
+        <label>Matrix Dimension (n):</label>
+        <input type="number" name="size" value="{{ request.form.get('size', '') }}" required>
+        
+        <label>Key / Matrix (letters or space-separated numbers)</label>
+        <textarea name="key" placeholder="e.g. HILLTMATRIX or '3 3 2 2'" required>{{ request.form.get('key', '') }}</textarea>
+        <small>Enter either a sequence of letters (will be converted to a key matrix) or space-separated integers (a numeric matrix). Size can be left empty to infer from input when appropriate.</small>
+
+        <label>Plaintext:</label>
+        <textarea name="plaintext" required>{{ request.form.get('plaintext', '') }}</textarea> 
+        
+        <button type="submit">Encrypt</button>
+      </form>
+
+      <div class="error-message">{{ error if error }}</div>
+
+      <h3>Ciphertext:</h3>
+      <pre class="output-box">{{ data.text if data }}</pre>
+
+      {% if data %}
+        <h3>Key Matrix ({{ data.matrix|length }} x {{ data.matrix|length }}):</h3>
+        <pre class="output-box">
+{% for row in data.matrix %}{{ row }}
+{% endfor %}
+        </pre>
+
+        <h3>Block-by-block Multiplication:</h3>
+        {% for b in data.blocks %}
+          <pre class="output-box">
+Vector: {{ b.vec }}
+{% for j in range(b.products|length) %}
+Products for output {{ j }}: {{ b.products[j] }}
+Sum: {{ b.sums[j] }} => mod 26 = {{ b.sums_mod[j] }} => Letter = {{ b.letters[j] }}
+{% endfor %}
+          </pre>
+        {% endfor %}
+      {% endif %}
+    </section>
+  </main>
+</body>
+</html>

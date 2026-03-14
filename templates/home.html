@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Crypto Lab Dashboard</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<aside class="sidebar">
+<div class="logo">Crypto Lab</div>
+
+<nav>
+<ul>
+<li><a href="/">Home</a></li>
+<li><a href="{{ url_for('exercise', ex_id='ex1') }}">Ex1</a></li>
+<li><a href="{{ url_for('exercise', ex_id='ex2') }}">Ex2</a></li>
+<li><a href="{{ url_for('exercise', ex_id='ex3') }}">Ex3</a></li>
+<li><a href="{{ url_for('exercise', ex_id='ex4') }}">Ex4</a></li>
+</ul>
+</nav>
+</aside>
+
+<main class="content">
+
+<header>
+<h1>Cryptography Lab Exercises</h1>
+</header>
+
+<div class="cipher-container">
+
+<a href="{{ url_for('exercise', ex_id='ex1') }}" class="exercise-card">
+<h2>Exercise 1</h2>
+<p>Classical Cryptography</p>
+</a>
+
+<a href="{{ url_for('exercise', ex_id='ex2') }}" class="exercise-card">
+<h2>Exercise 2</h2>
+<p>Modern Symmetric Ciphers</p>
+</a>
+
+<a href="{{ url_for('exercise', ex_id='ex3') }}" class="exercise-card">
+<h2>Exercise 3</h2>
+<p>Public Key Cryptography</p>
+</a>
+
+<a href="{{ url_for('exercise', ex_id='ex4') }}" class="exercise-card">
+<h2>Exercise 4</h2>
+<p>Cryptographic Hash Functions</p>
+</a>
+
+</div>
+
+</main>
+</body>
+</html>

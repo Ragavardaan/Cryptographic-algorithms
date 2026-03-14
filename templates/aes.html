@@ -8,15 +8,12 @@
 <body>
   <aside class="sidebar">
     <div class="logo">Crypto Lab</div>
-    <nav><ul><li><a href="{{ url_for('exercise', ex_id='ex1') }}">Home</a></li></ul></nav>
+    <nav><ul><li><a href="{{ url_for('home') }}" class="home-btn">Dashboard</a></li></ul></nav>
   </aside>
 
   <main class="content">
     <header>
       <h1>AES-128 Single-Block Trace</h1>
-      <nav>
-        <a href="{{ url_for('exercise', ex_id='ex2') }}" class="home-btn">Dashboard</a>
-      </nav>
     </header>
 
     <form method="post">

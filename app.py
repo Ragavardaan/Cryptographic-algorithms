@@ -15,9 +15,8 @@ app = Flask(__name__)
 
 # --- Main Navigation Routes ---
 @app.route('/')
-def root():
-    # Default to Ex1
-    return redirect(url_for('exercise', ex_id='ex1'))
+def home():
+    return render_template('home.html')
 
 @app.route('/<ex_id>')
 def exercise(ex_id):

@@ -18,14 +18,9 @@ app = Flask(__name__)
 def home():
     return render_template('home.html')
 
-@app.route('/<ex_id>')
-def exercise(ex_id):
-    # If the ID isn't ex1...ex7, default to ex1
-    valid_ex = [f'ex{i}' for i in range(1, 8)]
-    if ex_id not in valid_ex:
-        return redirect(url_for('exercise', ex_id='ex1'))
-    
-    return render_template('index.html', active_ex=ex_id)
+@app.route("/ex<int:num>")
+def exercises(num):
+    return render_template("index.html", active_ex=f"ex{num}")
 
 # --- Keep ALL your existing Cipher Routes below this line ---
 # (Paste the previous routes for shift_encrypt, shift_decrypt, etc. here)

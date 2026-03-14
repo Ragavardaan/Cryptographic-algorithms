@@ -8,7 +8,7 @@
 <body>
   <aside class="sidebar">
     <div class="logo">Crypto Lab</div>
-    <nav><ul><li><a href="{{ url_for('exercise', ex_id='ex1') }}">Home</a></li></ul></nav>
+    <nav><ul><li><a href="{{ url_for('home') }}" class="home-btn">Dashboard</a></li></ul></nav>
   </aside>
 
   <main class="content">
@@ -16,7 +16,6 @@
       <h1>Extended Euclidean Algorithm</h1>
       <nav>
         <a href="gcd.html" class="mode-switch">Switch to GCD</a>
-        <a href="{{ url_for('exercise', ex_id='ex1') }}" class="home-btn">Dashboard</a>
       </nav>
     </header>
 

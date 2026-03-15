@@ -35,38 +35,38 @@
         <section class="cipher-card">
           <h2>Shift Cipher</h2>
           <ul class="link-list">
-            <li><a href="shift_encrypt.html">Encrypt</a></li>
-            <li><a href="shift_decrypt.html">Decrypt</a></li>
+            <li><a href="{{ url_for('shift_encrypt_route') }}">Encrypt</a></li>
+            <li><a href="{{ url_for('shift_decrypt_route') }}">Decrypt</a></li>
           </ul>
         </section>
 
         <section class="cipher-card">
           <h2>Hill Cipher</h2>
           <ul class="link-list">
-            <li><a href="hill_matrix_inverse.html">Matrix Properties</a></li>
-            <li><a href="hill_determinant.html">Determinant</a></li>
-            <li><a href="hill_multiplicative_inverse.html">Multiplicative Inverse</a></li>
-            <li><a href="hill_encrypt.html">Encrypt</a></li>
-            <li><a href="hill_decrypt.html">Decrypt</a></li>
-            <li><a href="hill_cofactor.html">Cofactor Matrix</a></li>
-            <li><a href="hill_transpose.html">Transpose Matrix</a></li>
+            <li><a href="{{ url_for('hill_matrix_inverse_route') }}">Matrix Properties</a></li>
+            <li><a href="{{ url_for('hill_determinant_route') }}">Determinant</a></li>
+            <li><a href="{{ url_for('hill_multiplicative_inverse_route') }}">Multiplicative Inverse</a></li>
+            <li><a href="{{ url_for('hill_encrypt_route') }}">Encrypt</a></li>
+            <li><a href="{{ url_for('hill_decrypt_route') }}">Decrypt</a></li>
+            <li><a href="{{ url_for('hill_cofactor_route') }}">Cofactor Matrix</a></li>
+            <li><a href="{{ url_for('hill_transpose_route') }}">Transpose Matrix</a></li>
           </ul>
         </section>
 
         <section class="cipher-card">
           <h2>Playfair Cipher</h2>
           <ul class="link-list">
-            <li><a href="playfair_encrypt.html">Encrypt</a></li>
-            <li><a href="playfair_decrypt.html">Decrypt</a></li>
+            <li><a href="{{ url_for('playfair_encrypt_route') }}">Encrypt</a></li>
+            <li><a href="{{ url_for('playfair_decrypt_route') }}">Decrypt</a></li>
           </ul>
         </section>
 
         <section class="cipher-card">
           <h2>Number Theory</h2>
           <ul class="link-list">
-            <li><a href="primitive_root.html">Primitive Roots</a></li>
-            <li><a href="gcd.html">GCD (Euclidean Algorithm)</a></li>
-            <li><a href="extended_gcd.html">Extended Euclidean Algorithm</a></li>
+            <li><a href="{{ url_for('primitive_root_route') }}">Primitive Roots</a></li>
+            <li><a href="{{ url_for('gcd_route') }}">GCD (Euclidean Algorithm)</a></li>
+            <li><a href="{{ url_for('extended_gcd_route') }}">Extended Euclidean Algorithm</a></li>
           </ul>
         </section>
       </div>
@@ -79,14 +79,14 @@
         <section class="cipher-card">
           <h2>AES (Single Block)</h2>
           <ul class="link-list">
-            <li><a href="aes.html">AES Encrypt (trace)</a></li>
+            <li><a href="{{ url_for('aes_route') }}">AES Encrypt (trace)</a></li>
           </ul>
         </section>
 
         <section class="cipher-card">
           <h2>Single DES</h2>
           <ul class="link-list">
-            <li><a href="des.html">DES Encrypt (trace)</a></li>
+             <li><a href="{{ url_for('des_route') }}">DES Encrypt (trace)</a></li>
           </ul>
         </section>
       </div>
@@ -99,14 +99,14 @@
         <section class="cipher-card">
           <h2>RSA Algorithm</h2>
           <ul class="link-list">
-            <li><a href="rsa.html">RSA (KeyGen + Encrypt + Decrypt)</a></li>
+            <li><a href="{{ url_for('rsa_route') }}">RSA (KeyGen + Encrypt + Decrypt)</a></li>
           </ul>
        </section>
 
        <section class="cipher-card">
           <h2>Diffie Hellman</h2>
           <ul class="link-list">
-            <li><a href="diffie.html">Key Exchange</a></li>
+            <li><a href="{{ url_for('diffie_route') }}">Key Exchange</a></li>
           </ul>
         </section>
       </div>
@@ -120,7 +120,7 @@
         <section class="cipher-card">
           <h2>MD5 Hash Algorithm</h2>
           <ul class="link-list">
-            <li><a href="md5.html">Generate MD5 Hash</a></li>
+            <li><a href="{{ url_for('md5_route') }}">Generate MD5 Hash</a></li>
           </ul>
         </section>
 

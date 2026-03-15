@@ -14,10 +14,13 @@
 <nav>
 <ul>
 <li><a href="/">Home</a></li>
-<li><a href="{{ url_for('exercise', ex_id='ex1') }}">Ex1</a></li>
-<li><a href="{{ url_for('exercise', ex_id='ex2') }}">Ex2</a></li>
-<li><a href="{{ url_for('exercise', ex_id='ex3') }}">Ex3</a></li>
-<li><a href="{{ url_for('exercise', ex_id='ex4') }}">Ex4</a></li>
+<li><a href="{{ url_for('exercises', num=1) }}">Ex1</a></li>
+<li><a href="{{ url_for('exercises', num=2) }}">Ex2</a></li>
+<li><a href="{{ url_for('exercises', num=3) }}">Ex3</a></li>
+<li><a href="{{ url_for('exercises', num=4) }}">Ex4</a></li>
+<li><a href="{{ url_for('exercises', num=5) }}">Ex5</a></li>
+<li><a href="{{ url_for('exercises', num=6) }}">Ex6</a></li>
+<li><a href="{{ url_for('exercises', num=7) }}">Ex7</a></li>
 </ul>
 </nav>
 </aside>

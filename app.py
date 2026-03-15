@@ -22,9 +22,6 @@ def home():
 def exercises(num):
     return render_template("index.html", active_ex=f"ex{num}")
 
-# --- Keep ALL your existing Cipher Routes below this line ---
-# (Paste the previous routes for shift_encrypt, shift_decrypt, etc. here)
-# For brevity, I am showing the start of them, ensure you keep them in your file.
 
 @app.route('/shift_encrypt.html', methods=['GET', 'POST'])
 def shift_encrypt_route():

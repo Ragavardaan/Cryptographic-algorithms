@@ -12,7 +12,7 @@
 <div class="logo">Crypto Lab</div>
 <nav>
 <ul>
-<li><a href="{{ url_for('home') }}">Dashboard</a></li>
+<li><a href="{{ url_for('exercise', ex_id='ex4') }}">Dashboard</a></li>
 </ul>
 </nav>
 </aside>
@@ -36,47 +36,19 @@ value="{{ request.form.get('message','') }}" required>
 {% endif %}
 
 {% if result %}
-
-<h3>General Steps</h3>
-<div class="output-box">
-{% for step in result.steps %}
-{{ step }}<br>
-{% endfor %}
-</div>
-
-<h3>Round 1</h3>
-<div class="output-box">
-{% for step in result.rounds[0] %}
-{{ step }}<br>
-{% endfor %}
-</div>
-
-<h3>Round 2</h3>
-<div class="output-box">
-{% for step in result.rounds[1] %}
-{{ step }}<br>
-{% endfor %}
-</div>
-
-<h3>Round 3</h3>
-<div class="output-box">
-{% for step in result.rounds[2] %}
-{{ step }}<br>
-{% endfor %}
-</div>
-
-<h3>Round 4</h3>
-<div class="output-box">
-{% for step in result.rounds[3] %}
-{{ step }}<br>
-{% endfor %}
-</div>
-
-<h3>Final MD5 Hash</h3>
+<h3>MD5 Hash</h3>
 <div class="output-box">
 {{ result.hash }}
 </div>
 
+<h3>Trace</h3>
+<div class="output-box">
+
+{% for step in result.steps %}
+{{ step }}<br>
+{% endfor %}
+
+</div>
 {% endif %}
 
 </form>

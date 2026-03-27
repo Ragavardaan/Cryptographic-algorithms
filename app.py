@@ -356,6 +356,8 @@ def md5_route():
             result = md5_algorithm.md5_hash_trace(message)
 
     except Exception as e:
+        import traceback
+        print(traceback.format_exc())  # helps debugging
         error = str(e)
 
     return render_template(

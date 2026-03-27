@@ -345,12 +345,18 @@ def md5_route():
     result = None
     error = None
 
-    if request.method == 'POST':
-        try:
+    try:
+        if request.method == 'POST':
+
             message = request.form.get('message')
+
+            if not message:
+                raise ValueError("Message cannot be empty")
+
             result = md5_algorithm.md5_hash_trace(message)
-        except Exception as e:
-            error = str(e)
+
+    except Exception as e:
+        error = str(e)
 
     return render_template(
         'md5.html',

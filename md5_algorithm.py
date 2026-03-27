@@ -8,7 +8,6 @@ def leftrotate(x, c):
 def md5_hash_trace(message):
 
     steps = []
-    rounds = [[], [], [], []]
 
     # ---------- Padding ----------
     msg_bytes = message.encode()
@@ -21,8 +20,6 @@ def md5_hash_trace(message):
 
     msg_bytes += struct.pack('<Q', original_length)
 
-    steps.append(f"Total message size after padding = {len(msg_bytes)*8} bits")
-
     steps.append("Padded Message (hex):")
     steps.append(msg_bytes.hex())
 
@@ -33,10 +30,10 @@ def md5_hash_trace(message):
     D = 0x10325476
 
     steps.append("Initial Buffers:")
-    steps.append(f"A = 0x{A:08x}")
-    steps.append(f"B = 0x{B:08x}")
-    steps.append(f"C = 0x{C:08x}")
-    steps.append(f"D = 0x{D:08x}")
+    steps.append(f"A = {hex(A)}")
+    steps.append(f"B = {hex(B)}")
+    steps.append(f"C = {hex(C)}")
+    steps.append(f"D = {hex(D)}")
 
     # ---------- Constants ----------
     s = [
@@ -54,28 +51,29 @@ def md5_hash_trace(message):
 
         steps.append("M values (32-bit words):")
         for i in range(16):
-            steps.append(f"M[{i:2}] = 0x{M[i]:08x}")
+            steps.append(f"M[{i}] = {hex(M[i])}")
 
         a, b, c, d = A, B, C, D
 
+        # ---------- 64 iterations ----------
         for i in range(64):
 
             if i < 16:
                 func = (b & c) | (~b & d)
                 g = i
-                r = 0
+                round_name = "Round 1"
             elif i < 32:
                 func = (b & d) | (c & ~d)
                 g = (5*i + 1) % 16
-                r = 1
+                round_name = "Round 2"
             elif i < 48:
                 func = b ^ c ^ d
                 g = (3*i + 5) % 16
-                r = 2
+                round_name = "Round 3"
             else:
                 func = c ^ (b | ~d)
                 g = (7*i) % 16
-                r = 3
+                round_name = "Round 4"
 
             temp = (a + func + K[i] + M[g]) & 0xffffffff
             temp = leftrotate(temp, s[i])
@@ -83,20 +81,25 @@ def md5_hash_trace(message):
 
             a, d, c, b = d, c, b, temp
 
-            rounds[r].append(
-                f"Step {i%16 + 1:2}: "
-                f"A=0x{a:08x} B=0x{b:08x} C=0x{c:08x} D=0x{d:08x}"
+            # Print each iteration result
+            steps.append(
+                f"{round_name} Step {i%16 + 1}: "
+                f"A={hex(a)} B={hex(b)} C={hex(c)} D={hex(d)}"
             )
 
+        # Add back to main buffers
         A = (A + a) & 0xffffffff
         B = (B + b) & 0xffffffff
         C = (C + c) & 0xffffffff
         D = (D + d) & 0xffffffff
 
+    # ---------- Final Hash ----------
     digest = struct.pack('<4I', A, B, C, D).hex()
+
+    steps.append("Final MD5 Hash:")
+    steps.append(digest)
 
     return {
         "hash": digest,
-        "steps": steps,
-        "rounds": rounds
+        "steps": steps
     }

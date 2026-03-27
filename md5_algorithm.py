@@ -2,19 +2,15 @@ import struct
 import math
 
 def leftrotate(x, c):
+    x = x & 0xffffffff
     return ((x << c) | (x >> (32 - c))) & 0xffffffff
-
-
+    
 def md5_hash_trace(message):
-
     steps = []
-
     # ---------- Padding ----------
     msg_bytes = message.encode()
     original_length = len(msg_bytes) * 8
-
     msg_bytes += b'\x80'
-
     while (len(msg_bytes) * 8) % 512 != 448:
         msg_bytes += b'\x00'
 
@@ -59,21 +55,13 @@ def md5_hash_trace(message):
         for i in range(64):
 
             if i < 16:
-                func = (b & c) | (~b & d)
-                g = i
-                round_name = "Round 1"
+                func = ((b & c) | ((~b) & d)) & 0xffffffff
             elif i < 32:
-                func = (b & d) | (c & ~d)
-                g = (5*i + 1) % 16
-                round_name = "Round 2"
+                func = ((b & d) | (c & (~d))) & 0xffffffff
             elif i < 48:
-                func = b ^ c ^ d
-                g = (3*i + 5) % 16
-                round_name = "Round 3"
+                func = (b ^ c ^ d) & 0xffffffff
             else:
-                func = c ^ (b | ~d)
-                g = (7*i) % 16
-                round_name = "Round 4"
+                func = (c ^ (b | (~d))) & 0xffffffff
 
             temp = (a + func + K[i] + M[g]) & 0xffffffff
             temp = leftrotate(temp, s[i])

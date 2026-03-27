@@ -12,7 +12,7 @@
 <div class="logo">Crypto Lab</div>
 <nav>
 <ul>
-<li><a href="{{ url_for('exercise', ex_id='ex4') }}">Dashboard</a></li>
+<li><a href="{{ url_for('home') }}">Dashboard</a></li>
 </ul>
 </nav>
 </aside>
@@ -36,6 +36,7 @@ value="{{ request.form.get('message','') }}" required>
 {% endif %}
 
 {% if result %}
+
 <h3>MD5 Hash</h3>
 <div class="output-box">
 {{ result.hash }}
@@ -43,12 +44,11 @@ value="{{ request.form.get('message','') }}" required>
 
 <h3>Trace</h3>
 <div class="output-box">
-
 {% for step in result.steps %}
 {{ step }}<br>
 {% endfor %}
-
 </div>
+
 {% endif %}
 
 </form>

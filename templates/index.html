@@ -111,20 +111,20 @@
         </section>
       </div>
     {% elif active_ex == 'ex4' %}
-      <header>
-          <h1>Ex4: Cryptographic Hash Functions</h1>
-      </header>
+<header>
+  <h1>Ex4: Cryptographic Hash Functions</h1>
+</header>
 
-      <div class="cipher-container">
+<div class="cipher-container">
 
-        <section class="cipher-card">
-          <h2>MD5 Hash Algorithm</h2>
-          <ul class="link-list">
-            <li><a href="{{ url_for('md5_route') }}">Generate MD5 Hash</a></li>
-          </ul>
-        </section>
+  <section class="cipher-card">
+    <h2>MD5 Hash Algorithm</h2>
+    <ul class="link-list">
+      <li><a href="md5.html">Generate MD5 Hash</a></li>
+    </ul>
+  </section>
 
-      </div>
+</div>
     {% else %}
       <header>
         <h1>{{ active_ex|upper }}</h1>

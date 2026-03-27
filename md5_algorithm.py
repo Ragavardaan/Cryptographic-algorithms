@@ -8,6 +8,7 @@ def leftrotate(x, c):
 def md5_hash_trace(message):
 
     steps = []
+    rounds = [[], [], [], []]   # 4 round boxes
 
     # ---------- Padding ----------
     msg_bytes = message.encode()
@@ -19,6 +20,8 @@ def md5_hash_trace(message):
         msg_bytes += b'\x00'
 
     msg_bytes += struct.pack('<Q', original_length)
+
+    steps.append(f"Total message size after padding = {len(msg_bytes)*8} bits")
 
     steps.append("Padded Message (hex):")
     steps.append(msg_bytes.hex())
@@ -55,25 +58,24 @@ def md5_hash_trace(message):
 
         a, b, c, d = A, B, C, D
 
-        # ---------- 64 iterations ----------
         for i in range(64):
 
             if i < 16:
                 func = (b & c) | (~b & d)
                 g = i
-                round_name = "Round 1"
+                r = 0
             elif i < 32:
                 func = (b & d) | (c & ~d)
                 g = (5*i + 1) % 16
-                round_name = "Round 2"
+                r = 1
             elif i < 48:
                 func = b ^ c ^ d
                 g = (3*i + 5) % 16
-                round_name = "Round 3"
+                r = 2
             else:
                 func = c ^ (b | ~d)
                 g = (7*i) % 16
-                round_name = "Round 4"
+                r = 3
 
             temp = (a + func + K[i] + M[g]) & 0xffffffff
             temp = leftrotate(temp, s[i])
@@ -81,25 +83,19 @@ def md5_hash_trace(message):
 
             a, d, c, b = d, c, b, temp
 
-            # Print each iteration result
-            steps.append(
-                f"{round_name} Step {i%16 + 1}: "
-                f"A={hex(a)} B={hex(b)} C={hex(c)} D={hex(d)}"
+            rounds[r].append(
+                f"Step {i%16 + 1}: A={hex(a)} B={hex(b)} C={hex(c)} D={hex(d)}"
             )
 
-        # Add back to main buffers
         A = (A + a) & 0xffffffff
         B = (B + b) & 0xffffffff
         C = (C + c) & 0xffffffff
         D = (D + d) & 0xffffffff
 
-    # ---------- Final Hash ----------
     digest = struct.pack('<4I', A, B, C, D).hex()
-
-    steps.append("Final MD5 Hash:")
-    steps.append(digest)
 
     return {
         "hash": digest,
-        "steps": steps
+        "steps": steps,
+        "rounds": rounds
     }

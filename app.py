@@ -348,9 +348,7 @@ def md5_route():
     if request.method == 'POST':
         try:
             message = request.form.get('message')
-
             result = md5_algorithm.md5_hash_trace(message)
-
         except Exception as e:
             error = str(e)
 

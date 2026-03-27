@@ -57,10 +57,6 @@ def md5_hash_trace(message):
 
         M = list(struct.unpack('<16I', msg_bytes[chunk:chunk+64]))
 
-        steps.append("M values (32-bit words):")
-        for i in range(16):
-            steps.append(f"M[{i:2}] = 0x{M[i]:08x}")
-
         a, b, c, d = A, B, C, D
 
         # ---------- 64 Iterations ----------
@@ -90,7 +86,7 @@ def md5_hash_trace(message):
             a, d, c, b = d, c, b, temp
 
             steps.append(
-                f"{round_name} Step {i%16 + 1:2}: "
+                f"{round_name} Iteration {i%16 + 1:2}: "
                 f"A=0x{a:08x} B=0x{b:08x} C=0x{c:08x} D=0x{d:08x}"
             )
 

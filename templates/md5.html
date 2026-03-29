@@ -37,17 +37,53 @@ value="{{ request.form.get('message','') }}" required>
 
 {% if result %}
 
-<h3>MD5 Hash</h3>
-<div class="output-box">
-{{ result.hash }}
-</div>
-
-<h3>Trace</h3>
+<h3>General Steps</h3>
 <div class="output-box">
 {% for step in result.steps %}
 {{ step }}<br>
 {% endfor %}
 </div>
+
+<h3>MD5 Rounds</h3>
+
+<div class="round-container">
+
+<div class="round-box">
+<h4>Round 1</h4>
+{% for step in result.rounds[0] %}
+{{ step }}<br>
+{% endfor %}
+</div>
+
+<div class="round-box">
+<h4>Round 2</h4>
+{% for step in result.rounds[1] %}
+{{ step }}<br>
+{% endfor %}
+</div>
+
+<div class="round-box">
+<h4>Round 3</h4>
+{% for step in result.rounds[2] %}
+{{ step }}<br>
+{% endfor %}
+</div>
+
+<div class="round-box">
+<h4>Round 4</h4>
+{% for step in result.rounds[3] %}
+{{ step }}<br>
+{% endfor %}
+</div>
+
+</div>
+
+<h3>Final MD5 Hash</h3>
+<div class="output-box">
+{{ result.hash }}
+</div>
+
+{% endif %}
 
 {% endif %}
 

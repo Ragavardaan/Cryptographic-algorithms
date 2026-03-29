@@ -56,13 +56,7 @@ def md5_hash_trace(message):
         for chunk in range(0, len(msg_bytes), 64):
 
             M = list(struct.unpack('<16I', msg_bytes[chunk:chunk+64]))
-
-            steps.append("M values:")
-            for i in range(16):
-                steps.append(f"M[{i}] = 0x{M[i]:08x}")
-
             a, b, c, d = A, B, C, D
-
             for i in range(64):
 
                 if i < 16:

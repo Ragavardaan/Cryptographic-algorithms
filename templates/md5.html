@@ -44,7 +44,7 @@ value="{{ request.form.get('message','') }}" required>
 {% endfor %}
 </div>
 
-<h3>MD5 Rounds</h3>
+<h3>Rounds</h3>
 
 <div class="round-container">
 
@@ -82,6 +82,8 @@ value="{{ request.form.get('message','') }}" required>
 <div class="output-box">
 {{ result.hash }}
 </div>
+
+{% endif %}
 
 {% endif %}
 

@@ -357,3 +357,27 @@ transform:scale(1.05);
 .exercise-card h2{
 margin-bottom:10px;
 }
+
+.round-container{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap:20px;
+    margin-top:20px;
+}
+
+.round-box{
+    background:#000;
+    border:2px solid #00ff88;
+    padding:15px;
+    border-radius:10px;
+    color:#00ff88;
+    font-family:monospace;
+    font-size:14px;
+    max-height:300px;
+    overflow-y:auto;
+}
+
+.round-box h4{
+    margin-bottom:10px;
+    text-align:center;
+}

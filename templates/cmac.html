@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CMAC - Crypto Lab</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<aside class="sidebar">
+<div class="logo">Crypto Lab</div>
+<nav>
+<ul>
+<li><a href="{{ url_for('home') }}">Dashboard</a></li>
+</ul>
+</nav>
+</aside>
+
+<main class="content">
+
+<header>
+<h1>CMAC using DES (CBC)</h1>
+</header>
+
+<form method="post">
+
+<label>Message:</label>
+<input name="message" type="text" required>
+
+<label>Key (64-bit hex):</label>
+<input name="key" type="text" required>
+
+<label>n (bits):</label>
+<input name="n_bits" type="number" required>
+
+<button type="submit">Generate CMAC</button>
+
+{% if error %}
+<div class="error-message">{{ error }}</div>
+{% endif %}
+
+{% if result %}
+
+<h3>CMAC</h3>
+<div class="output-box">
+{{ result.cmac }}
+</div>
+
+<h3>Steps</h3>
+<div class="output-box">
+{% for step in result.steps %}
+{{ step }}<br>
+{% endfor %}
+</div>
+
+{% endif %}
+
+</form>
+
+</main>
+</body>
+</html>

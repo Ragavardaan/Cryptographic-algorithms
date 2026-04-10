@@ -10,6 +10,8 @@ import des_single
 import rsa_algorithm
 import diffie_hellman
 import md5_algorithm
+import cmac_des
+
 
 app = Flask(__name__)
 
@@ -366,5 +368,28 @@ def md5_route():
         error=error
     )
 
+@app.route('/cmac.html', methods=['GET','POST'])
+def cmac_route():
+
+    result = None
+    error = None
+
+    try:
+        if request.method == 'POST':
+
+            message = request.form.get('message')
+            key = request.form.get('key')
+            n_bits = int(request.form.get('n_bits'))
+
+            result = cmac_des.cmac_des(message, key, n_bits)
+
+    except Exception as e:
+        error = str(e)
+
+    return render_template(
+        'cmac.html',
+        result=result,
+        error=error
+    )
 if __name__ == '__main__':
     app.run()

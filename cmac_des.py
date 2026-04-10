@@ -17,7 +17,7 @@ def cmac_des(message, key, n_bits):
 
     # ---------- DES CBC ----------
     result = compute_des_trace(
-        plaintext=message.hex(),
+        plaintext=message.decode('latin-1'),
         key=key,
         mode='CBC',
         operation='ENCRYPT'

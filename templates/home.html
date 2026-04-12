@@ -8,23 +8,22 @@
 
 <body>
 
+<!-- SIDEBAR -->
 <aside class="sidebar">
 <div class="logo">Crypto Lab</div>
 
 <nav>
 <ul>
 <li><a href="/">Home</a></li>
-<a href="{{ url_for('exercises', num=1) }}" class="exercise-card">Ex1</a>
-<a href="{{ url_for('exercises', num=2) }}" class="exercise-card">Ex2</a>
-<a href="{{ url_for('exercises', num=3) }}" class="exercise-card">Ex3</a>
-<a href="{{ url_for('exercises', num=4) }}" class="exercise-card">Ex4</a>
-<a href="{{ url_for('exercises', num=5) }}" class="exercise-card">Ex5</a>
-<a href="{{ url_for('exercises', num=6) }}" class="exercise-card">Ex6</a>
-<a href="{{ url_for('exercises', num=7) }}" class="exercise-card">Ex7</a>
+<li><a href="{{ url_for('exercises', num=1) }}">Ex1</a></li>
+<li><a href="{{ url_for('exercises', num=2) }}">Ex2</a></li>
+<li><a href="{{ url_for('exercises', num=3) }}">Ex3</a></li>
+<li><a href="{{ url_for('exercises', num=4) }}">Ex4</a></li>
 </ul>
 </nav>
 </aside>
 
+<!-- MAIN CONTENT -->
 <main class="content">
 
 <header>
@@ -51,21 +50,6 @@
 <a href="{{ url_for('exercises', num=4) }}" class="exercise-card">
 <h2>Exercise 4</h2>
 <p>Cryptographic Hash Functions</p>
-</a>
-
-<a href="{{ url_for('exercises', num=5) }}" class="exercise-card">
-<h2>Exercise 5</h2>
-<p>Upcoming Exercise...</p>
-</a>
-
-<a href="{{ url_for('exercises', num=6) }}" class="exercise-card">
-<h2>Exercise 6</h2>
-<p>Upcoming Exercise...</p>
-</a>
-
-<a href="{{ url_for('exercises', num=7) }}" class="exercise-card">
-<h2>Exercise 7</h2>
-<p>Upcoming Exercise...</p>
 </a>
 
 </div>

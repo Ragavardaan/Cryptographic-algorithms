@@ -11,14 +11,11 @@
     <div class="logo">Crypto Lab</div>
     <nav>
       <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/ex1">Ex1</a></li>
-        <li><a href="/ex2">Ex2</a></li>
-        <li><a href="/ex3">Ex3</a></li>
-        <li><a href="/ex4">Ex4</a></li>
-        <li><a href="/ex5">Ex5</a></li>
-        <li><a href="/ex6">Ex6</a></li>
-        <li><a href="/ex7">Ex7</a></li>
+        <li><a href="/" class="{{ 'active' if active_ex == 'home' else '' }}">Home</a></li>
+        <li><a href="/ex1" class="{{ 'active' if active_ex == 'ex1' else '' }}">Ex1</a></li>
+        <li><a href="/ex2" class="{{ 'active' if active_ex == 'ex2' else '' }}">Ex2</a></li>
+        <li><a href="/ex3" class="{{ 'active' if active_ex == 'ex3' else '' }}">Ex3</a></li>
+        <li><a href="/ex4" class="{{ 'active' if active_ex == 'ex4' else '' }}">Ex4</a></li>
       </ul>
     </nav>
   </aside>

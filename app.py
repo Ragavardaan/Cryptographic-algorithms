@@ -378,10 +378,9 @@ def cmac_route():
         if request.method == 'POST':
 
             message = request.form.get('message')
-            key = request.form.get('key')
             n_bits = int(request.form.get('n_bits'))
 
-            result = cmac_des.cmac_des(message, key, n_bits)
+            result = cmac_des.cmac_des(message, n_bits)
 
     except Exception as e:
         error = str(e)

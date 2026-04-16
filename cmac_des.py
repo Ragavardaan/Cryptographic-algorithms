@@ -1,4 +1,4 @@
-from DES import compute_des_trace
+from des_single import compute_des_trace
 import hashlib
 
 

@@ -1,80 +1,90 @@
-/* ---------- LIGHT THEME (PRINT FRIENDLY) ---------- */
+/* ---------- MODERN SOFT THEME ---------- */
 
 :root {
-  --bg-color: #ffffff;
-  --card-bg: #f9f9f9;
-  --text-color: #000000;
-  --accent-color: #000000;
-  --accent-hover: #333333;
-  --border-color: #000000;
-  --terminal-bg: #ffffff;
-  --terminal-text: #000000;
+  --bg-color: #f4f1ea; /* Warm Oatmeal - Soft on the eyes */
+  --sidebar-bg: #ede9df;
+  --card-bg: #ffffff;
+  --text-color: #2d2d2d; /* Soft Charcoal instead of pure black */
+  --accent-color: #6b7a6e; /* Muted Sage Green */
+  --accent-hover: #556357;
+  --border-color: #d1cdc2;
+  --terminal-bg: #2d2d2d;
+  --terminal-text: #e0e0e0;
+  --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
 }
 
 * { box-sizing: border-box; }
 
 body {
   margin: 0;
-  font-family: 'Consolas', 'Courier New', monospace;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   background-color: var(--bg-color);
   color: var(--text-color);
   display: flex;
   height: 100vh;
+  line-height: 1.6;
 }
 
 /* --- SIDEBAR --- */
 .sidebar {
-  width: 260px;
-  background-color: #f2f2f2;
-  border-right: 1px solid #000;
-  padding: 2rem 1.5rem;
+  width: 280px;
+  background-color: var(--sidebar-bg);
+  border-right: 1px solid var(--border-color);
+  padding: 2.5rem 1.5rem;
   overflow-y: auto;
 }
 
 .sidebar .logo {
-  font-size: 1.3rem;
-  font-weight: bold;
-  margin-bottom: 2rem;
-  border-bottom: 1px solid #000;
-  padding-bottom: 1rem;
+  font-size: 1.1rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 800;
+  margin-bottom: 2.5rem;
+  color: var(--accent-color);
   text-align: center;
 }
 
 .sidebar nav ul { list-style: none; padding: 0; margin: 0; }
-.sidebar nav li { margin-bottom: 0.5rem; }
+.sidebar nav li { margin-bottom: 0.8rem; }
 
 .sidebar nav a {
   display: block;
-  color: #000;
+  color: var(--text-color);
   text-decoration: none;
-  padding: 0.7rem;
-  border-radius: 4px;
-  border: 1px solid transparent;
+  padding: 0.8rem 1.2rem;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  font-weight: 500;
 }
 
-.sidebar nav a:hover,
+.sidebar nav a:hover {
+  background-color: rgba(0,0,0,0.04);
+}
+
 .sidebar nav a.active {
-  border: 1px solid #000;
-  font-weight: bold;
+  background-color: var(--accent-color);
+  color: #fff;
+  box-shadow: var(--shadow-sm);
 }
 
 /* --- MAIN CONTENT --- */
 .content {
   flex-grow: 1;
   overflow-y: auto;
-  padding: 2rem 3rem;
+  padding: 3rem 4rem;
 }
 
 /* --- HEADER --- */
 header {
-  margin-bottom: 2rem;
-  border-bottom: 1px solid #000;
-  padding-bottom: 1rem;
+  margin-bottom: 3rem;
 }
 
 header h1 {
-  margin: 0 0 1rem 0;
-  font-size: 2rem;
+  margin: 0 0 1.5rem 0;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--text-color);
 }
 
 header nav {
@@ -84,126 +94,147 @@ header nav {
 
 header nav a {
   text-decoration: none;
-  padding: 0.5rem 1rem;
-  border: 1px solid #000;
-  color: #000;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  color: var(--text-color);
+  font-size: 0.9rem;
+  transition: 0.2s;
+}
+
+header nav a:hover {
+  border-color: var(--accent-color);
+  color: var(--accent-color);
 }
 
 /* --- CARDS --- */
 .cipher-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2rem;
 }
 
 .cipher-card {
   background-color: var(--card-bg);
-  border: 1px solid #000;
-  padding: 1.5rem;
-  border-radius: 8px;
+  border: none;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: var(--shadow-md);
+  transition: transform 0.2s ease;
+}
+
+.cipher-card:hover {
+  transform: translateY(-4px);
 }
 
 .cipher-card h2 {
   margin-top: 0;
-  border-bottom: 1px solid #000;
-  padding-bottom: 0.5rem;
+  font-size: 1.4rem;
+  color: var(--accent-color);
+  margin-bottom: 1.5rem;
 }
 
 .cipher-card a {
   display: block;
-  padding: 0.5rem;
+  padding: 0.8rem;
   text-decoration: none;
-  color: #000;
-  border: 1px solid #ccc;
-  margin-bottom: 5px;
+  color: var(--text-color);
+  background: var(--bg-color);
+  border-radius: 6px;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+  border: 1px solid transparent;
 }
 
 .cipher-card a:hover {
-  border: 1px solid #000;
+  border-color: var(--accent-color);
+  background: #fff;
 }
 
 /* --- FORMS --- */
 form {
   max-width: 800px;
   background-color: var(--card-bg);
-  padding: 2rem;
-  border: 1px solid #000;
+  padding: 2.5rem;
+  border-radius: 16px;
+  box-shadow: var(--shadow-md);
 }
 
 label {
   display: block;
-  margin-top: 1rem;
-  font-weight: bold;
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--accent-color);
 }
 
 input, textarea {
   width: 100%;
-  border: 1px solid #000;
-  padding: 8px;
-  margin-top: 5px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-color);
+  padding: 12px;
+  border-radius: 8px;
+  margin-top: 8px;
   font-family: inherit;
+  outline: none;
+  transition: 0.2s;
+}
+
+input:focus, textarea:focus {
+  border-color: var(--accent-color);
+  background: #fff;
 }
 
 button {
-  margin-top: 1.5rem;
-  padding: 10px;
-  border: 1px solid #000;
-  background: #fff;
+  margin-top: 2rem;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  background: var(--accent-color);
+  color: white;
+  font-weight: 600;
   cursor: pointer;
+  transition: 0.2s;
+}
+
+button:hover {
+  background: var(--accent-hover);
+  box-shadow: 0 4px 12px rgba(107, 122, 110, 0.3);
 }
 
 /* --- OUTPUT BOX --- */
 .output-box {
-  margin-top: 1rem;
-  padding: 10px;
-  border: 1px solid #000;
-  background-color: #fff;
-  font-family: monospace;
-  white-space: pre-wrap;
-}
-
-/* --- ERROR --- */
-.error-message {
-  margin-top: 10px;
-  border: 1px solid #000;
-  padding: 8px;
+  margin-top: 1.5rem;
+  padding: 1.5rem;
+  border-radius: 12px;
+  background-color: var(--terminal-bg);
+  color: var(--terminal-text);
+  font-family: 'Fira Code', monospace;
+  box-shadow: inset 0 2px 8px rgba(0,0,0,0.2);
 }
 
 /* --- ROUND BOXES --- */
-.round-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 15px;
-  margin-top: 15px;
-}
-
 .round-box {
-  border: 1px solid #000;
-  padding: 10px;
+  border: 1px solid var(--border-color);
+  padding: 1.5rem;
+  border-radius: 12px;
   background-color: #fff;
-  font-family: monospace;
-  max-height: 250px;
-  overflow-y: auto;
-}
-
-.round-box h4 {
-  margin-bottom: 10px;
+  font-family: 'Fira Code', monospace;
 }
 
 /* --- TABLES --- */
-.round-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
 .round-table td {
-  border: 1px solid #000;
-  padding: 5px;
+  border: 1px solid var(--border-color);
+  padding: 10px;
+  text-align: center;
 }
 
 /* --- PRINT MODE --- */
 @media print {
   .sidebar { display: none; }
-  button { display: none; }
-  body { background: white; color: black; }
+  .content { padding: 0; }
+  body { background: white; }
+  .cipher-card { border: 1px solid #eee; box-shadow: none; }
 }

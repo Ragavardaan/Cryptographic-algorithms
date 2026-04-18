@@ -9,7 +9,7 @@ def cmac_des(message, n_bits):
     # ---------- STEP 1: CALL YOUR MD5 ----------
     md5_result = md5_algorithm.md5_hash_trace(message)
 
-    full_hash = md5_result["hash"]   # ✅ IMPORTANT FIX
+    full_hash = md5_result["hash"]   
     steps.append(f"MD5 Hash (128-bit): {full_hash}")
 
     # ---------- STEP 2: TAKE FIRST 64 BITS ----------
